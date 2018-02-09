@@ -4,3 +4,6 @@ body {
   font-family: sans-serif;
   background: #252120;
 }
+#root {
+  overflow-x: hidden;
+}

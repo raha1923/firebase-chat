@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Alert, Button, ButtonGroup } from 'react-bootstrap';
+import Grid from 'material-ui/Grid';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
 import { Element, scroller } from 'react-scroll'
 
 import { PrivateChatService } from '../../service/';
@@ -58,32 +60,50 @@ class PrivateChat extends Component {
     let renderedMessage = [];
     for(let item of messages) {
       renderedMessage.push(
-        <Row className={item.sender === this.targetId ? 'flex-row' : 'flex-row-reverse'} key={messages.indexOf(item)}>
+        <Grid item xs={12} className={item.sender === this.targetId ? 'flex-row' : 'flex-row-reverse'} key={messages.indexOf(item)}>
           <span className={item.sender === this.targetId ? 'recived' : 'sended'}>{item.message}</span>
-        </Row>
+        </Grid>
       );
     }
     return (
-      <Grid fluid={true} className="private-chat">
-        <Row id="chat-box">
-          <Col lg={12}>
+      <Grid container className="private-chat">
+        <Grid item xs={12}>
+          <Grid id="chat-box" container justify="center" spacing={16}>
             {renderedMessage}
             <Element name="end-of-chat"></Element>
-          </Col>
-        </Row>
-        <Row id="message-input">
-          <ButtonGroup className="col-12">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="message ..."
-              value={message}
-              onKeyPress={e => e.key === 'Enter' && this.submitMessage()}
-              onChange={e => this.setState({message: e.target.value})}
-            />
-            <Button onClick={this.submitMessage} bsStyle="primary">Send</Button>
-          </ButtonGroup>
-        </Row>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} id="message-input">
+          <Grid container justify="center" spacing={0}>
+            <Grid item xs={10}>
+              <TextField
+                label="Message"
+                labelClassName="white-color"
+                helperTextClassName="white-color"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                placeholder="message ..."
+                helperText="Message"
+                fullWidth
+                autoFocus={true}
+                margin="normal"
+                value={message}
+                onChange={e => this.setState({message: e.target.value})}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button
+                onClick={this.submitMessage}
+                fullWidth
+                variant="raised"
+                color="primary"
+              >
+                Send
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     );
   }

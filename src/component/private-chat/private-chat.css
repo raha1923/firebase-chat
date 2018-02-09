@@ -15,15 +15,26 @@
   border-radius: 3px;
 }
 #chat-box {
-  height: calc(100% - 3rem);
+  height: calc(100% - 4rem);
   width: 100%;
   position: fixed;
   top: 0;
   overflow-y: auto;
 }
 #message-input {
-  height: 3rem;
+  height: 4rem;
   width: 100%;
   position: fixed;
   bottom: 0;
+  color: white;
+  border-top: 1px solid;
+}
+#message-input .MuiFormControl-marginNormal-190 {
+  margin-top: 0;
+}
+#message-input input[type="text"] {
+  color: white !important;
+}
+.white-color {
+  color: white !important;
 }

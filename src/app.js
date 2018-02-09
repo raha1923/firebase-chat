@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './app.css';
 
+import Header           from './component/header/header';
 import Login            from './component/login/login';
 import PrivateChat      from './component/private-chat/private-chat';
 
 class App extends Component {
 
-  getChildContext() {
-    return {color: "purple"};
+  drawerToggle = () => {
+
   }
 
   render() {
     return (
       <Router>
         <div>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/chat/:id" component={PrivateChat}/>
+          <Header drawerToggle={this.drawerToggle} />
+          <div className="app">
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/chat/:id" component={PrivateChat}/>
+          </div>
         </div>
       </Router>
     );
   }
-}
-
-App.childContextTypes = {
-  color: PropTypes.string,
 }
 
 export default App;
