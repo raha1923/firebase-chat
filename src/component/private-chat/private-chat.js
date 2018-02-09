@@ -60,7 +60,7 @@ class PrivateChat extends Component {
     let renderedMessage = [];
     for(let item of messages) {
       renderedMessage.push(
-        <Grid item xs={12} className={item.sender === this.targetId ? 'flex-row' : 'flex-row-reverse'} key={messages.indexOf(item)}>
+        <Grid key={messages.indexOf(item)} container justify={item.sender === this.targetId ? 'flex-start' : 'flex-end'} spacing={16}>
           <span className={item.sender === this.targetId ? 'recived' : 'sended'}>{item.message}</span>
         </Grid>
       );
@@ -68,7 +68,7 @@ class PrivateChat extends Component {
     return (
       <Grid container className="private-chat">
         <Grid item xs={12}>
-          <Grid id="chat-box" container justify="center" spacing={16}>
+          <Grid id="chat-box" item>
             {renderedMessage}
             <Element name="end-of-chat"></Element>
           </Grid>
